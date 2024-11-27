@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #slider{
+        /* width:100vw; */
+        padding:5%;
+        height:300px;
+    }
+
+    .slide-wrapper{
+        display:none;
+        opacity:0;        
+        text-align: center;
+        /* position: relative; */
+        top:145px;
+        transition: opacity 2s;
+        
+    }
+
+    .active{
+        display:block;
+        opacity:1;
+    }
+
+    
+</style>
+<body>
+    <div id="slider">
+        <div class="slide-wrapper active" style="background-color: aqua;">
+            <h1 class="slides">Slide 1</h1>
+        </div>
+        <div class="slide-wrapper" style="background-color: rgb(220, 64, 21);">
+            <h1 class="slides">Slide 2</h1>
+        </div>
+        <div class="slide-wrapper" style="background-color: rgb(40, 0, 113);">
+            <h1 class="slides">Slide 3</h1>
+        </div>
+        <div class="slide-wrapper" style="background-color: rgb(202, 237, 0);">
+            <h1 class="slides">Slide 4</h1>
+        </div>
+
+        <button id="prev">
+            prev
+        </button>
+        <button id="next">
+            next
+        </button>
+    </div>
+
+    <script>
+        var currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide-wrapper');
+        const prev = document.querySelector('#prev');
+        const next = document.querySelector('#next');
+        console.log(slides);
+        console.log(prev);
+        console.log(next);
+
+        prev.addEventListener('click',()=>{
+            console.log(currentSlideIndex);
+            slides[currentSlideIndex].classList.remove('active');            
+            if(currentSlideIndex <= 0){
+                currentSlideIndex=slides.length-1;
+            }
+            else{
+                currentSlideIndex--;
+            }
+            slides[currentSlideIndex].classList.add('active');
+        })
+
+        next.addEventListener('click',()=>{
+            
+            slides[currentSlideIndex].classList.remove('active');   
+            
+            if(currentSlideIndex >= slides.length-1){
+                currentSlideIndex=0;
+            }
+            else{                
+                currentSlideIndex++;
+            }
+
+            slides[currentSlideIndex].classList.add('active');  
+        })
+
+        
+    </script>
+
+</body>
+</html>
